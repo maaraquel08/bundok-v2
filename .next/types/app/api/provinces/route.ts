@@ -1,4 +1,4 @@
-// File: /Users/paradise/Coding/Bundok/bundok/src/app/api/provinces/route.ts
+// File: /Users/paradise/Coding/Bundok/bundok-leaflet/src/app/api/provinces/route.ts
 import * as entry from '../../../../../src/app/api/provinces/route.js'
 import type { NextRequest } from 'next/server.js'
 

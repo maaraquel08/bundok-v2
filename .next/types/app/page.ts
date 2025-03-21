@@ -1,4 +1,4 @@
-// File: /Users/paradise/Coding/Bundok/bundok/src/app/page.tsx
+// File: /Users/paradise/Coding/Bundok/bundok-leaflet/src/app/page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

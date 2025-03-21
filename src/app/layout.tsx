@@ -16,6 +16,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
+            <head>
+                {/* In Next.js, we don't need to add the CSS in the layout if it's imported in the component */}
+                {/* The CSS path was incorrect - removing this line as the import in Map.tsx should handle it */}
+            </head>
             <body className={inter.className}>{children}</body>
         </html>
     );

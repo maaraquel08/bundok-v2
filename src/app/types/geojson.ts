@@ -1,4 +1,4 @@
-import { Feature, Geometry } from "geojson";
+import { Feature } from "geojson";
 
 export type GeoJSONFeature = Feature;
 
