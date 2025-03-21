@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
     /* config options here */
@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
         if (!isServer) {
             config.ignoreWarnings = [{ module: /node_modules\/leaflet/ }];
         }
+
+        // Add support for importing from both src/app/lib and lib directories
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            "@/app/lib": "./src/app/lib",
+            "@/app/components": "./src/app/components",
+        };
 
         return config;
     },
