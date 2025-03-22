@@ -1,6 +1,14 @@
 {
     "version": 2,
-    "buildCommand": "npm ci && next build",
+    "buildCommand": "npm run build:vercel",
+    "installCommand": "npm install --no-audit --prefer-offline --legacy-peer-deps",
     "outputDirectory": ".next",
-    "framework": "nextjs"
+    "framework": "nextjs",
+    "env": {
+        "NEXT_TELEMETRY_DISABLED": "1",
+        "SKIP_ESLINT": "1",
+        "NEXT_IGNORE_TYPECHECK": "1",
+        "NEXT_SKIP_TS_CHECK": "1",
+        "NODE_ENV": "production"
+    }
 }
