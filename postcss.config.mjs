@@ -1,7 +1,5 @@
 const config = {
-    plugins: {
-        autoprefixer: {},
-    },
+    plugins: {},
 };
 
 export default config;
