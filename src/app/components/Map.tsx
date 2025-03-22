@@ -958,14 +958,11 @@ export function Map({
                 {selectedProvince && (
                     <div className="space-y-6">
                         <div className="province-stats-card">
-                            <h3 className="font-medium text-green-800 mb-2">
-                                Province Statistics
-                            </h3>
                             <div className="flex justify-between items-center">
                                 <span className="text-green-700">
                                     Mountains I&apos;ve Climbed
                                 </span>
-                                <span className="font-bold text-green-900">
+                                <span className="font-bold text-green-700">
                                     {selectedProvince && selectedProvince.name
                                         ? mountainsByProvinceRef.current[
                                               selectedProvince.name.toLowerCase()
@@ -1074,7 +1071,7 @@ export function Map({
                                                         );
                                                     }}
                                                 >
-                                                    <div className="flex items-center gap-2">
+                                                    <div className="mountain-card-title">
                                                         <input
                                                             type="checkbox"
                                                             id={`mountain-${index}`}

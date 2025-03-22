@@ -1,47 +1,47 @@
 {
   "pages": {
     "/_not-found/page": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
       "static/chunks/main-app-ee8df73aebd5f1d5.js",
-      "static/chunks/app/_not-found/page-a8c4ecca5cc9402d.js"
-    ],
-    "/api/provinces/route": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
-      "static/chunks/main-app-ee8df73aebd5f1d5.js",
-      "static/chunks/app/api/provinces/route-eda302ad708b7a91.js"
-    ],
-    "/api/municipalities/route": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
-      "static/chunks/main-app-ee8df73aebd5f1d5.js",
-      "static/chunks/app/api/municipalities/route-10cf9036836d63c3.js"
+      "static/chunks/app/_not-found/page-6bf1735bae9e04ee.js"
     ],
     "/layout": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
       "static/chunks/main-app-ee8df73aebd5f1d5.js",
-      "static/css/851673d64663246e.css",
+      "static/css/5d453403dc51442e.css",
       "static/chunks/app/layout-470daf4a6bad6f3f.js"
     ],
     "/api/boundaries/route": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
       "static/chunks/main-app-ee8df73aebd5f1d5.js",
       "static/chunks/app/api/boundaries/route-cb344256bf1d78fe.js"
     ],
-    "/page": [
-      "static/chunks/webpack-beb9e16a4096e717.js",
-      "static/chunks/4bd1b696-5b2b1e7b5478d01a.js",
-      "static/chunks/684-d14ea7d978a5ee01.js",
+    "/api/municipalities/route": [
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
       "static/chunks/main-app-ee8df73aebd5f1d5.js",
-      "static/chunks/app/page-58efa5dc4ca9504d.js"
+      "static/chunks/app/api/municipalities/route-10cf9036836d63c3.js"
+    ],
+    "/api/provinces/route": [
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
+      "static/chunks/main-app-ee8df73aebd5f1d5.js",
+      "static/chunks/app/api/provinces/route-eda302ad708b7a91.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-fc01a9be47c8bb4b.js",
+      "static/chunks/4bd1b696-92f787ce67d7893e.js",
+      "static/chunks/684-5758939fc6dc2d87.js",
+      "static/chunks/main-app-ee8df73aebd5f1d5.js",
+      "static/chunks/app/page-13ab85010e8fde6d.js"
     ]
   }
 }
