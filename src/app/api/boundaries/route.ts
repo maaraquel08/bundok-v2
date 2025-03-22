@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { loadProvinceData } from "@/app/lib/loadProvinceBoundaries";
+import { loadProvinceData } from "../../lib/loadProvinceBoundaries";
 
 export async function GET() {
     try {

@@ -1,4 +1,4 @@
-import { ClientMap } from "@/app/components/ClientMap";
+import { ClientMap } from "./components/ClientMap";
 
 export default function Home() {
     return (
