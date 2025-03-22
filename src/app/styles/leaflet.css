@@ -68,44 +68,6 @@
     transform: translate3d(0, 0, 0);
 }
 
-/* Custom mountain marker style */
-.mountain-marker {
-    position: relative;
-    /* Remove any margins that could affect positioning */
-    margin: 0;
-    padding: 0;
-    pointer-events: auto !important;
-    opacity: 1 !important;
-}
-
-/* Add styling for the marker inner div */
-.marker-inner {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background-color: #d62828;
-    border: 2px solid white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    /* Ensure the circle fits perfectly in its container */
-    box-sizing: border-box;
-}
-
-/* We're using consistent red color for all mountains regardless of climbed status */
-/* .mountain-marker.climbed .marker-inner {
-    background-color: #22c55e;
-} */
-
-.mountain-marker-circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #d62828;
-    border: 2px solid white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    /* Ensure the circle fits perfectly in its container */
-    box-sizing: border-box;
-}
-
 /* Mountain label styling */
 .mountain-label {
     background: transparent !important;
@@ -297,4 +259,33 @@
 .mountain-icon {
     transition: none !important;
     pointer-events: auto !important;
+}
+
+/* Additional styles for province tooltips */
+.province-info-tooltip {
+    pointer-events: none; /* Prevent tooltip from interfering with mouse events */
+}
+
+/* Mountain marker high z-index */
+.mountain-marker-high-z {
+    z-index: 1000 !important; /* Ensure mountain markers stay above provinces */
+}
+
+/* Force circle markers to be on top */
+.leaflet-marker-pane {
+    z-index: 650 !important;
+}
+
+.leaflet-overlay-pane {
+    z-index: 400 !important;
+}
+
+/* Make tooltip container higher z-index to ensure tooltips render on top */
+.leaflet-tooltip-pane {
+    z-index: 1100 !important;
+}
+
+/* Ensure the popup pane is above all */
+.leaflet-popup-pane {
+    z-index: 1200 !important;
 }

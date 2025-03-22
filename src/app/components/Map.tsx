@@ -108,6 +108,9 @@ export function Map({
             }
         }
         // No style change for selected province when mouse leaves
+
+        // Always ensure mountain markers stay on top after mouse out
+        bringMountainMarkersToFront();
     };
 
     const highlightFeature = (e: LeafletEvent) => {
@@ -119,6 +122,11 @@ export function Map({
             e.target.feature &&
             e.target.feature.id === selectedProvinceIdRef.current
         ) {
+            // For the selected province, we want to disable the tooltip temporarily
+            // but not unbind it completely, so it can be restored when deselected
+            if (layer.isTooltipOpen()) {
+                layer.closeTooltip();
+            }
             return; // Early exit - no hover effect for selected province
         }
 
@@ -151,6 +159,22 @@ export function Map({
                     ) {
                         l.bringToFront();
                     }
+                }
+            });
+        }
+
+        // Always ensure mountain markers stay on top
+        bringMountainMarkersToFront();
+    };
+
+    // Helper function to ensure mountain markers stay on top
+    const bringMountainMarkersToFront = () => {
+        if (visibleMountainsLayerRef.current) {
+            visibleMountainsLayerRef.current.eachLayer((layer: L.Layer) => {
+                if (layer instanceof L.CircleMarker) {
+                    setTimeout(() => {
+                        layer.bringToFront();
+                    }, 10); // Small delay to ensure this happens after other layer operations
                 }
             });
         }
@@ -340,9 +364,6 @@ export function Map({
                                     )
                                 );
                                 layer.bringToFront();
-
-                                // Disable tooltip for the selected province
-                                layer.unbindTooltip();
                             }
                         }
                     });
@@ -353,6 +374,11 @@ export function Map({
                     `Calling displayMountainsInProvince for: ${provinceName}`
                 );
                 displayMountainsInProvince(provinceName);
+
+                // Make sure mountain markers stay on top after province selection
+                setTimeout(() => {
+                    bringMountainMarkersToFront();
+                }, 100); // Longer delay to ensure mountains are loaded first
             },
         });
     };
@@ -448,23 +474,45 @@ export function Map({
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const mountainId = props.id || `${name}-fallback`;
 
-                // Create a div icon for the mountain marker for better styling control
-                const mountainIcon = L.divIcon({
-                    className: "mountain-marker",
-                    html: `<div class="marker-inner"></div>`,
-                    iconSize: [14, 14],
+                // Get current zoom level for marker size calculation
+                const currentZoom = map.current?.getZoom() || 0;
+                // Base size that scales with zoom
+                const baseSize = Math.max(
+                    10,
+                    Math.min(16, 10 + currentZoom - 5)
+                );
+
+                // Create a simple circle marker for better positioning accuracy
+                const marker = L.circleMarker(latlng, {
+                    radius: baseSize / 2,
+                    fillColor: "#d62828",
+                    color: "#fff",
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 1,
+                    interactive: true,
+                    bubblingMouseEvents: false,
+                    // Set the highest possible z-index for the circle marker
+                    // to ensure it always stays above province polygons
                 });
 
-                // Use a marker with our custom icon instead of circleMarker
-                const marker = L.marker(latlng, {
-                    icon: mountainIcon,
-                    interactive: true,
-                    bubblingMouseEvents: false, // Prevent event bubbling
-                    riseOnHover: true, // Bring to front when hovered
+                // Apply a CSS class to ensure higher z-index
+                const markerElement = marker.getElement();
+                if (markerElement) {
+                    markerElement.classList.add("mountain-marker-high-z");
+                }
+
+                // Bring marker to front on creation
+                marker.on("add", () => {
+                    marker.bringToFront();
+                });
+
+                // Bring marker to front on mouseover to ensure tooltip displays correctly
+                marker.on("mouseover", () => {
+                    marker.bringToFront();
                 });
 
                 // Get current zoom level for label visibility
-                const currentZoom = map.current?.getZoom() || 0;
                 const showLabel = currentZoom > 5; // Only show labels when zoomed in enough
 
                 // Add popup with detailed information on click
@@ -544,7 +592,47 @@ export function Map({
             },
         }).addTo(map.current);
 
-        // Add zoom handler to handle label visibility
+        // Add zoom handler to update marker sizes on zoom change
+        const updateMarkersOnZoom = () => {
+            if (!map.current || !visibleMountainsLayerRef.current) return;
+
+            const currentZoom = map.current.getZoom();
+            // Use a simple scaling formula
+            const baseSize = Math.max(10, Math.min(16, 10 + currentZoom - 5));
+
+            // Update marker sizes
+            visibleMountainsLayerRef.current.eachLayer((layer: L.Layer) => {
+                if (layer instanceof L.CircleMarker) {
+                    // Update circle radius
+                    layer.setRadius(baseSize / 2);
+                    // Ensure markers remain on top
+                    layer.bringToFront();
+                }
+            });
+
+            // Update label visibility
+            updateLabelVisibility();
+        };
+
+        // Add zoom listener for marker size updates
+        map.current.on("zoomend", updateMarkersOnZoom);
+
+        // Force mountains to be on top after province interactions
+        if (provincesLayerRef.current) {
+            provincesLayerRef.current.on("mouseout", () => {
+                if (visibleMountainsLayerRef.current) {
+                    visibleMountainsLayerRef.current.eachLayer(
+                        (layer: L.Layer) => {
+                            if (layer instanceof L.CircleMarker) {
+                                layer.bringToFront();
+                            }
+                        }
+                    );
+                }
+            });
+        }
+
+        // Update zoom handler to handle label visibility
         const updateLabelVisibility = () => {
             if (!map.current || !visibleMountainsLayerRef.current) return;
 
@@ -590,9 +678,6 @@ export function Map({
                 });
             }
         };
-
-        // Add zoom listener for label visibility
-        map.current.on("zoomend", updateLabelVisibility);
     };
 
     // Add helper function to clear mountain labels
@@ -751,6 +836,15 @@ export function Map({
             minZoom: 3, // Lower min zoom to allow seeing more context
             // Remove maxBounds to allow free panning anywhere on the map
         }).setView(initialCenter, initialZoom);
+
+        // Add additional event listeners for ensuring markers stay on top
+        map.current.on("moveend", () => {
+            setTimeout(bringMountainMarkersToFront, 50);
+        });
+
+        map.current.on("zoomend", () => {
+            setTimeout(bringMountainMarkersToFront, 50);
+        });
 
         // Mark as initialized early
         mapInitializedRef.current = true;
