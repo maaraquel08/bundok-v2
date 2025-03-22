@@ -268,18 +268,34 @@ body,
     outline: none;
 }
 
+/* Mountain label styling */
 .mountain-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    white-space: nowrap;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    padding: 0 !important;
+    margin: 0 !important;
     font-weight: 600;
     font-size: 16px;
     color: #333;
     user-select: none; /* Prevent text selection while clicking */
     flex: 1 1 0%;
-    text-align: left !important;
+    text-align: left;
     pointer-events: none;
+}
+
+/* Remove tooltip arrow */
+.mountain-label:before,
+.mountain-label:after {
+    display: none !important;
 }
 
 .mountain-label.completed {
     text-decoration: line-through;
+    font-weight: 400;
     color: #cbcbcb; /* var(--green-500) */
 }
 

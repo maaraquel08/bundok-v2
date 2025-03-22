@@ -68,28 +68,6 @@
     transform: translate3d(0, 0, 0);
 }
 
-/* Mountain label styling */
-.mountain-label {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    font-weight: bold;
-    font-size: 11px;
-    color: #333;
-    white-space: nowrap;
-    text-align: center;
-    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
-        1px 1px 0 #fff;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-/* Remove tooltip arrow */
-.mountain-label:before,
-.mountain-label:after {
-    display: none !important;
-}
-
 /* Hide labels when zoomed out */
 .hidden-label {
     display: none !important;
