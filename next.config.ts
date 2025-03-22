@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
             ...config.resolve.alias,
             "@/app/lib": "./src/app/lib",
             "@/app/components": "./src/app/components",
+            "@/lib": "./src/lib",
+            "@/components": "./src/components",
         };
 
         return config;

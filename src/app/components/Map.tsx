@@ -11,7 +11,7 @@ import "../styles/leaflet.css";
 // Import SheetPanel component
 import { SheetPanel } from "./SheetPanel";
 // Import Zustand store
-import useClimbedMountainsStore from "@/store/useClimbedMountainsStore";
+import useClimbedMountainsStore from "../../store/useClimbedMountainsStore";
 
 interface MapProps {
     initialCenter?: [number, number];
