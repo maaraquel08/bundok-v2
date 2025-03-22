@@ -3,6 +3,10 @@ data/phl-mountains/.git
 node_modules/
 # Next.js build output
 .next/
+out/
+# Build
+dist/
+build/
 # Environment variables
 .env
 .env.local
@@ -16,3 +20,4 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+.vercel
