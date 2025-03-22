@@ -1,67 +1,22 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-@custom-variant dark (&:is(.dark *));
-
-@layer base {
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    html,
-    body,
-    #root {
-        width: 100%;
-        height: 100%;
-        font-family: "Inter", sans-serif;
-    }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", sans-serif;
 }
 
 :root {
@@ -97,6 +52,21 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+
+    /* Color variables for the UI */
+    --green-50: #f0fdf4;
+    --green-500: #22c55e;
+    --green-700: #15803d;
+    --green-800: #166534;
+    --green-900: #14532d;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-900: #111827;
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+    --red-700: #b91c1c;
 }
 
 .dark {
@@ -131,4 +101,381 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* SheetPanel CSS */
+.sheet-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    max-width: 28rem; /* md = 28rem */
+    background-color: white;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    z-index: 40;
+}
+
+.sheet-panel-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sheet-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.sheet-panel-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.sheet-panel-close-button {
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+
+.sheet-panel-close-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sheet-panel-content {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+}
+
+.sheet-panel-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Province Statistics and Mountain Listings */
+.province-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.province-stats {
+    margin-bottom: 1.5rem;
+}
+
+.stats-heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.climb-stats {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+}
+
+.mountains-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.mountain-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.mountain-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.mountain-checkbox {
+    margin-right: 0.5rem;
+    margin-top: 0.25rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: var(--primary);
+}
+
+.mountain-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.mountain-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.mountain-elevation,
+.mountain-prominence {
+    font-size: 1rem;
+}
+
+/* Converted Tailwind classes for Map.tsx */
+
+/* Spacing utilities */
+.space-y-4 > * + * {
+    margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+    margin-top: 1.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+/* Flex layout */
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+/* Width and height */
+.w-full {
+    width: 100%;
+}
+
+.h-1 {
+    height: 0.25rem;
+}
+
+.h-4 {
+    height: 1rem;
+}
+
+.w-4 {
+    width: 1rem;
+}
+
+/* Background colors */
+.bg-green-50 {
+    background-color: var(--green-50);
+}
+
+.bg-green-500 {
+    background-color: var(--green-500);
+}
+
+.bg-gray-200 {
+    background-color: var(--gray-200);
+}
+
+/* Text styling */
+.font-medium {
+    font-weight: 500;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+.text-gray-400 {
+    color: var(--gray-400);
+}
+
+.text-gray-500 {
+    color: var(--gray-500);
+}
+
+.text-gray-900 {
+    color: var(--gray-900);
+}
+
+.text-green-700 {
+    color: var(--green-700);
+}
+
+.text-green-800 {
+    color: var(--green-800);
+}
+
+.text-green-900 {
+    color: var(--green-900);
+}
+
+.text-red-600 {
+    color: var(--red-600);
+}
+
+.text-red-700 {
+    color: var(--red-700);
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+/* Border styling */
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+}
+
+.border {
+    border-width: 1px;
+    border-style: solid;
+}
+
+.border-gray-200 {
+    border-color: var(--gray-200);
+}
+
+.border-gray-300 {
+    border-color: var(--gray-300);
+}
+
+/* Padding */
+.p-3 {
+    padding: 0.75rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+/* Misc styles */
+.opacity-50 {
+    opacity: 0.5;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Focus styles */
+.focus\:ring-red-500:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
+    outline: none;
+}
+
+/* Province stats card */
+.province-stats-card {
+    background-color: var(--green-50);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 0.25rem;
+    background-color: var(--gray-200);
+    border-radius: 9999px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--green-500);
+    border-radius: 9999px;
+}
+
+/* Mountain item card */
+.mountain-card {
+    padding: 0.75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.375rem;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    cursor: pointer;
+}
+
+.mountain-card.completed {
+    opacity: 0.5;
+}
+
+.mountain-checkbox {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 0.25rem;
+    border-color: var(--gray-300);
+    color: var(--red-600);
+}
+
+.mountain-checkbox:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
+    outline: none;
+}
+
+.mountain-label {
+    font-weight: 500;
+    flex: 1 1 0%;
+}
+
+.mountain-label.completed {
+    color: var(--gray-400);
+    text-decoration: line-through;
+}
+
+.mountain-label.active {
+    color: var(--red-700);
+}
+
+.mountain-data-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mountain-data-label {
+    color: var(--gray-500);
+}
+
+.mountain-data-value {
+    font-weight: 500;
 }

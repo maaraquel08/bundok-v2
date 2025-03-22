@@ -957,7 +957,7 @@ export function Map({
             >
                 {selectedProvince && (
                     <div className="space-y-6">
-                        <div className="bg-green-50 p-4 rounded-lg">
+                        <div className="province-stats-card">
                             <h3 className="font-medium text-green-800 mb-2">
                                 Province Statistics
                             </h3>
@@ -992,9 +992,9 @@ export function Map({
                                     / {selectedProvince.mountainCount}
                                 </span>
                             </div>
-                            <div className="w-full h-1 bg-gray-200 rounded-full">
+                            <div className="progress-bar">
                                 <div
-                                    className="h-full bg-green-500 rounded-full"
+                                    className="progress-bar-fill"
                                     style={{
                                         width: `${
                                             selectedProvince &&
@@ -1063,11 +1063,11 @@ export function Map({
                                                 <div
                                                     // Use the index in the key to guarantee uniqueness in this list
                                                     key={`${mountainId}-list-item-${index}`}
-                                                    className={`p-3 border rounded-md border-gray-200 transition-opacity ${
+                                                    className={`mountain-card ${
                                                         isChecked
-                                                            ? "opacity-50"
+                                                            ? "completed"
                                                             : ""
-                                                    } cursor-pointer`}
+                                                    }`}
                                                     onClick={() => {
                                                         toggleMountain(
                                                             mountainId
@@ -1078,7 +1078,7 @@ export function Map({
                                                         <input
                                                             type="checkbox"
                                                             id={`mountain-${index}`}
-                                                            className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+                                                            className="mountain-checkbox"
                                                             checked={isChecked}
                                                             onChange={(e) => {
                                                                 e.stopPropagation(); // Prevent triggering the card click
@@ -1092,10 +1092,10 @@ export function Map({
                                                         />
                                                         <label
                                                             htmlFor={`mountain-${index}`}
-                                                            className={`font-medium flex-1 ${
+                                                            className={`mountain-label ${
                                                                 isChecked
-                                                                    ? "text-gray-400 line-through"
-                                                                    : "text-red-700"
+                                                                    ? "completed"
+                                                                    : "active"
                                                             }`}
                                                         >
                                                             {props.name ||
@@ -1105,11 +1105,11 @@ export function Map({
                                                     <div className="flex flex-col gap-2 text-sm mt-2">
                                                         {(props.elevation ||
                                                             props.elev) && (
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-500">
+                                                            <div className="mountain-data-row">
+                                                                <span className="mountain-data-label">
                                                                     Elevation:
                                                                 </span>
-                                                                <span className="font-medium">
+                                                                <span className="mountain-data-value">
                                                                     {props.elevation ||
                                                                         props.elev}
                                                                     m
@@ -1117,11 +1117,11 @@ export function Map({
                                                             </div>
                                                         )}
                                                         {props.prom && (
-                                                            <div className="flex justify-between">
-                                                                <span className="text-gray-500">
+                                                            <div className="mountain-data-row">
+                                                                <span className="mountain-data-label">
                                                                     Prominence:
                                                                 </span>
-                                                                <span className="font-medium">
+                                                                <span className="mountain-data-value">
                                                                     {props.prom}
                                                                     m
                                                                 </span>
