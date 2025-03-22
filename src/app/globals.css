@@ -108,19 +108,24 @@ body,
     position: absolute;
     right: 0;
     top: 0;
-    height: 100%;
+    height: calc(100% - 32px); /* Adjust for margins */
     width: 100%;
     max-width: 28rem; /* md = 28rem */
-    background-color: white;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
     z-index: 40;
+    background: transparent;
+    margin: 16px;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .sheet-panel-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden; /* Ensure content is contained */
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .sheet-panel-header {
@@ -138,11 +143,17 @@ body,
 
 .sheet-panel-close-button {
     padding: 0.25rem;
-    border-radius: 9999px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    height: 32px;
+    width: 32px;
+    background-color: white;
 }
 
 .sheet-panel-close-button:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--gray-200);
+    cursor: pointer;
 }
 
 .sheet-panel-content {
@@ -196,11 +207,9 @@ body,
 }
 
 .mountain-checkbox {
-    margin-right: 0.5rem;
-    margin-top: 0.25rem;
-    width: 1.125rem;
-    height: 1.125rem;
-    accent-color: var(--primary);
+    width: 1rem;
+    height: 1rem;
+    accent-color: rgba(68, 148, 239, 0.5);
 }
 
 .mountain-details {
@@ -412,6 +421,16 @@ body,
     border-radius: 0.5rem;
 }
 
+.province-stats-card span {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.province-stats-card div:first-child {
+    margin-bottom: 0.5rem;
+}
+
 .progress-bar {
     width: 100%;
     height: 0.25rem;
@@ -441,8 +460,6 @@ body,
 }
 
 .mountain-checkbox {
-    height: 1rem;
-    width: 1rem;
     border-radius: 0.25rem;
     border-color: var(--gray-300);
     color: var(--red-600);
@@ -453,9 +470,17 @@ body,
     outline: none;
 }
 
+.mountain-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .mountain-label {
-    font-weight: 500;
+    font-weight: 500 !important;
     flex: 1 1 0%;
+    font-size: 1rem !important;
+    text-align: left !important;
 }
 
 .mountain-label.completed {
