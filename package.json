@@ -36,5 +36,8 @@
         "eslint-config-next": "15.2.3",
         "postcss": "^8.4.31",
         "typescript": "^5"
+    },
+    "resolutions": {
+        "eslint": "8.57.0"
     }
 }
