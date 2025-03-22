@@ -1,5 +1,8 @@
 {
   "/api/provinces/route": "app/api/provinces/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/municipalities/route": "app/api/municipalities/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/boundaries/route": "app/api/boundaries/route.js",
   "/page": "app/page.js"
 }
